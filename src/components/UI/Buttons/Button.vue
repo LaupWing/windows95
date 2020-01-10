@@ -4,7 +4,7 @@
         :class='className'
         :style={styleObj}
     >
-        {{content}}
+        <slot></slot>
     </button>
 </template>
 
@@ -16,10 +16,6 @@ export default {
             required: true,
             type: String
         },
-        content:{
-            type: String,
-            required: true
-        },
         styleObj:{
             type: Object
         }
@@ -28,5 +24,23 @@ export default {
 </script>
 
 <style>
+.button{
+   display: flex; 
+   align-items: center;
+   background: var(--lightGrey);
+   padding: 3px;
+}
 
+.button.start-btn svg{
+    height: 80%;
+    margin-right: 3px;
+}
+.button.start-btn{
+    justify-content: center;
+    font-size: 1.2rem;
+    border-top: var(--lighterGrey) solid 2px;
+    border-left: var(--lighterGrey) solid 2px;
+    border-right: var(--justBlack) solid 2px;
+    border-bottom: var(--justBlack) solid 2px;
+}
 </style>

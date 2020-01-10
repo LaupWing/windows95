@@ -5,6 +5,10 @@
 </template>
 
 <style>
+@font-face {
+    font-family: PixelFJVerdana12pt;
+    src: url(./assets/fonts/microsoft.ttf) format('truetype');
+}
 *{
     margin: 0;
     padding:0;
@@ -15,6 +19,16 @@
     --mediumGrey:#ced1d6;
     --darkGrey: #86898E;
     --justWhite: white;
-    --justBlack: black;
+    --justBlack: rgba(0,0,0,.5);
+    --fontFam: PixelFJVerdana12pt;
+    font-family: var(--fontFam);
+}
+#app{
+    width: 100vw;
+    height: 100vh;
+    background: var(--turqoise);
+}
+button{
+    outline: none;
 }
 </style>
