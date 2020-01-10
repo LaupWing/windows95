@@ -1,7 +1,11 @@
 <template>
-    <div class="program" draggable="true">
+    <div 
+        class="program" 
+        draggable="true"
+        @dragstart="dragStartEvent"
+    >
         <div class="img-container">
-            <img :src="require(`../../../assets/programs/${file}`)" alt="">
+            <img draggable="false" :src="require(`../../../assets/programs/${file}`)" alt="">
         </div>
         <h2>{{title}}</h2>
     </div>
@@ -22,8 +26,15 @@ export default {
     },
     data(){
         return{
+
         }
     },
+    methods:{
+        dragStartEvent(e){
+            console.log(e)
+            e.dataTransfer.effectAllowed = 'move' 
+        }
+    }
 }
 </script>
 
@@ -31,6 +42,7 @@ export default {
 .program{
     width: 70px;
     margin: 10px;
+    background: transparent;
 }
 .program .img-container{
     padding: 2px 10px;

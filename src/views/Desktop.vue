@@ -1,6 +1,6 @@
 <template>
     <div id="Desktop">
-        <div class="desktop-container">
+        <div class="desktop-container" @dragover="dragoverEvent">
             <Program
                 :title="'Printer'"
                 :file="'printer.png'"
@@ -18,6 +18,12 @@ export default {
     components: {
         NavigatorBar,
         Program
+    },
+    methods:{
+        dragoverEvent(event){
+            event.preventDefault()
+            
+        }
     }
 }
 </script>
