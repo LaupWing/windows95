@@ -1,5 +1,7 @@
 # windows95
 A little project where i recreate the windows 95, but as a website.
+![windows95](https://github.com/LaupWing/windows95/blob/master/images/Windows-95.jpg?raw=true)
+
 
 ## Technologies
 Technologie's being used in this project are:
