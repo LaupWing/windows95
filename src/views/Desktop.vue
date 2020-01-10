@@ -1,24 +1,35 @@
 <template>
     <div id="Desktop">
-        <!-- <h1>Home page</h1>    -->
-        <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+        <div class="desktop-container">
+            <Program
+                :title="'Printer'"
+                :file="'printer.png'"
+            />
+        </div>
         <NavigatorBar/>
     </div>
 </template>
 
 <script>
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
+import Program from '../components/Home/Desktop/Program'
 export default {
     name: 'Desktop',
     components: {
-        NavigatorBar
+        NavigatorBar,
+        Program
     }
 }
 </script>
 <style scoped>
 #Desktop{
-    position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.desktop-container{
+    position: relative;
+    flex-grow: 1;
 }
 </style>
