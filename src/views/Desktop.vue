@@ -1,6 +1,10 @@
 <template>
     <div id="Desktop">
-        <div class="desktop-container" @dragover="dragoverEvent">
+        <div 
+            class="desktop-container" 
+            @dragover="dragoverEvent"
+            :style="styleObj"
+        >
             <Program
                 :title="'Printer'"
                 :file="'printer.png'"
@@ -19,12 +23,37 @@ export default {
         NavigatorBar,
         Program
     },
+    data(){
+        return{
+            styleObj: null
+        }
+    },
     methods:{
         dragoverEvent(event){
             event.preventDefault()
             
+        },
+        calculateGrid(){
+            const container = this.$el.querySelector('.desktop-container')
+            const programSizes = this.$el.querySelector('.program').getBoundingClientRect()
+            const containerSizes = container.getBoundingClientRect()
+            
+
+            const maxRow = Math.floor(containerSizes.height / programSizes.height)
+            const maxColumn = Math.floor(containerSizes.width / programSizes.width)
+            this.styleObj ={
+                display: 'grid',
+                gridTemplateColumns : `repeat(${maxColumn},1fr)`,
+                gridTemplateRows : `repeat(${maxRow},1fr)`
+            }
         }
+    },
+    mounted(){
+        window.addEventListener('load',()=>{
+            this.calculateGrid()
+        })
     }
+    
 }
 </script>
 <style scoped>

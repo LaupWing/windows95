@@ -3,6 +3,7 @@
         class="program" 
         draggable="true"
         @dragstart="dragStartEvent"
+        @dragend="dragEndEvent"
     >
         <div class="img-container">
             <img draggable="false" :src="require(`../../../assets/programs/${file}`)" alt="">
@@ -31,9 +32,14 @@ export default {
     },
     methods:{
         dragStartEvent(e){
-            console.log(e)
             e.dataTransfer.effectAllowed = 'move' 
+        },
+        dragEndEvent(e){
+            console.log(e)
         }
+    },
+    mounted(){
+        
     }
 }
 </script>
@@ -41,7 +47,7 @@ export default {
 <style scoped>
 .program{
     width: 70px;
-    margin: 10px;
+    /* margin: 10px; */
     background: transparent;
 }
 .program .img-container{
