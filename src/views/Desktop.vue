@@ -9,6 +9,7 @@
                 :title="'Printer'"
                 :file="'printer.png'"
             />
+            <ProgramWindows/>
         </div>
         <NavigatorBar/>
     </div>
@@ -19,11 +20,14 @@ import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
 import Program from '../components/Home/Desktop/Program/Program'
 import {mapMutations} from 'vuex'
 import {debounce} from 'debounce'
+import ProgramWindows from '../components/Home/Desktop/ProgramWindows/ProgramWindows'
+
 export default {
     name: 'Desktop',
     components: {
         NavigatorBar,
-        Program
+        Program,
+        ProgramWindows
     },
     data(){
         return{
