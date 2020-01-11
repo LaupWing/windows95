@@ -1,5 +1,6 @@
 const state ={
     clickedProgram:null,
+    activeProgram: null,
     openPanels: [
         {
             icon: 'printer.png',
@@ -11,6 +12,7 @@ const state ={
 
 const getters ={
     getClickedProgram: state => state.clickedProgram,
+    getActiveProgram: state => state.activeProgram,
     getOpenPanels: state => state.openPanels,
 }
 
@@ -23,6 +25,7 @@ const actions ={
 
 const mutations = {
     setClickedProgram: (state, el) => (state.clickedProgram = el),
+    setActiveProgram: (state, program) => (state.activeProgram = program),
     setOpenPanels: (state, panels) => (state.openPanels = panels)
 }
 

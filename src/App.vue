@@ -9,9 +9,10 @@ import {mapMutations} from 'vuex'
 export default {
     name: 'app',
     methods:{
-        ...mapMutations(['setClickedProgram']),
+        ...mapMutations(['setClickedProgram', 'setActiveProgram']),
         onClickEvent(e){
             this.setClickedProgram(null)
+            this.setActiveProgram(null)
         }
     }
 }

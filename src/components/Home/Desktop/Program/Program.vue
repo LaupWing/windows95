@@ -9,7 +9,7 @@
         :style="styleObj"
     >
         <div class="img-container">
-            <img draggable="false" :src="require(`../../../assets/programs/${file}`)" alt="">
+            <img draggable="false" :src="require(`../../../../assets/programs/${file}`)" alt="">
         </div>
         <h2>{{title}}</h2>
     </div>

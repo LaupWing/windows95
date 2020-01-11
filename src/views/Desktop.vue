@@ -16,7 +16,7 @@
 
 <script>
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
-import Program from '../components/Home/Desktop/Program'
+import Program from '../components/Home/Desktop/Program/Program'
 import {mapMutations} from 'vuex'
 import {debounce} from 'debounce'
 export default {
