@@ -18,6 +18,7 @@
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
 import Program from '../components/Home/Desktop/Program'
 import {mapMutations} from 'vuex'
+import {debounce} from 'debounce'
 export default {
     name: 'Desktop',
     components: {
@@ -88,6 +89,11 @@ export default {
         window.addEventListener('load',()=>{
             this.makeGrid()
         })
+        window.addEventListener('resize',
+            debounce(()=>{
+                this.makeGrid()
+            },200)
+        )
     }
     
 }
