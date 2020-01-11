@@ -1,8 +1,21 @@
 <template>
-    <div id="app">
+    <div id="app" @click="onClickEvent">
         <router-view/>
     </div>
 </template>
+
+<script>
+import {mapMutations} from 'vuex'
+export default {
+    name: 'app',
+    methods:{
+        ...mapMutations(['setClickedProgram']),
+        onClickEvent(e){
+            this.setClickedProgram(null)
+        }
+    }
+}
+</script>
 
 <style>
 @font-face {
@@ -13,6 +26,7 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
+    --blue: #020080;
     --turqoise: #56AAAA;
     --lighterGrey:#fffaff;
     --lightGrey: #C3C6CB;

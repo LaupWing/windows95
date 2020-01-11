@@ -1,9 +1,11 @@
 <template>
     <div 
         class="program" 
+        :class="{'dragging': active}"
         draggable="true"
         @dragstart="dragStartEvent"
         @dragend="dragEndEvent"
+        @click="onClickEvent"
         :style="styleObj"
     >
         <div class="img-container">
@@ -14,7 +16,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
+
 export default {
     name: 'Program',
     props:{
@@ -28,7 +31,10 @@ export default {
         },
     },
     computed:{
-        ...mapGetters(['getCoords'])
+        ...mapGetters(['getCoords', 'getClickedProgram']),
+        active(){
+            return this.$el === this.getClickedProgram
+        }
     },
     data(){
         return{
@@ -36,7 +42,14 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['setClickedProgram']),
+        onClickEvent(e){
+            e.stopPropagation()
+            this.setClickedProgram(this.$el)
+        },
         dragStartEvent(e){
+            this.setClickedProgram(this.$el)
+            this.drag = true
             e.dataTransfer.effectAllowed = 'move' 
         },
         dragEndEvent(e){
@@ -68,6 +81,9 @@ export default {
     width: 70px;
     /* margin: 10px; */
     background: transparent;
+}
+.program.dragging{
+    background: var(--blue);
 }
 .program .img-container{
     padding: 2px 10px;
