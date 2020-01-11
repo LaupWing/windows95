@@ -17,6 +17,7 @@
 <script>
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
 import Program from '../components/Home/Desktop/Program'
+import {mapMutations} from 'vuex'
 export default {
     name: 'Desktop',
     components: {
@@ -29,11 +30,12 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['setCoords']),
         dragoverEvent(event){
             event.preventDefault()
             
         },
-        calculateGrid(){
+        makeGrid(){
             const container = this.$el.querySelector('.desktop-container')
             const programSizes = this.$el.querySelector('.program').getBoundingClientRect()
             const containerSizes = container.getBoundingClientRect()
@@ -46,11 +48,45 @@ export default {
                 gridTemplateColumns : `repeat(${maxColumn},1fr)`,
                 gridTemplateRows : `repeat(${maxRow},1fr)`
             }
+            this.calculateGridCoords(maxRow, maxColumn)
+        },
+        calculateGridCoords(y, x){
+            setTimeout(()=>{
+                const programSizes = this.$el.querySelector('.program').getBoundingClientRect()
+                const coords = []
+                for(let xIndex=0; xIndex<x; xIndex++){
+                    for(let yIndex=0; yIndex<y; yIndex++){
+                        coords.push({
+                            cell:{
+                                col: xIndex,
+                                row: yIndex
+                            },
+                            topLeft: {
+                                x: xIndex * programSizes.width,
+                                y: yIndex * programSizes.height,
+                            },
+                            topRight: {
+                                x: (xIndex * programSizes.width) + programSizes.width,
+                                y: yIndex * programSizes.height,
+                            },
+                            bottomLeft:{
+                                x: xIndex * programSizes.width,
+                                y: (yIndex * programSizes.height) + programSizes.height
+                            },
+                            bottomRight:{
+                                x: (xIndex * programSizes.width) + programSizes.width,
+                                y: (yIndex * programSizes.height) + programSizes.height
+                            },
+                        })
+                    }
+                }
+                this.setCoords(coords)
+            },1)
         }
     },
     mounted(){
         window.addEventListener('load',()=>{
-            this.calculateGrid()
+            this.makeGrid()
         })
     }
     

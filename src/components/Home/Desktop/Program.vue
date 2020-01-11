@@ -4,6 +4,7 @@
         draggable="true"
         @dragstart="dragStartEvent"
         @dragend="dragEndEvent"
+        :style="styleObj"
     >
         <div class="img-container">
             <img draggable="false" :src="require(`../../../assets/programs/${file}`)" alt="">
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name: 'Program',
     props:{
@@ -25,9 +27,12 @@ export default {
             required: true
         },
     },
+    computed:{
+        ...mapGetters(['getCoords'])
+    },
     data(){
         return{
-
+            styleObj: null
         }
     },
     methods:{
@@ -35,11 +40,25 @@ export default {
             e.dataTransfer.effectAllowed = 'move' 
         },
         dragEndEvent(e){
-            console.log(e)
+            const xLocation = e.clientX
+            const yLocation = e.clientY
+            if(this.getCoords){
+                const cellCoord = this.getCoords.find(coord=>{
+                    if(
+                        coord.topLeft.x <= xLocation && 
+                        coord.topLeft.y <= yLocation &&
+                        coord.bottomRight.x >= xLocation &&
+                        coord.bottomRight.y >= yLocation
+                        ){
+                        return coord
+                    }
+                })
+                this.styleObj ={
+                    'grid-column': cellCoord.cell.col+1,
+                    'grid-row': cellCoord.cell.row+1
+                }
+            }
         }
-    },
-    mounted(){
-        
     }
 }
 </script>
