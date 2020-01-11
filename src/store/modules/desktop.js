@@ -1,17 +1,29 @@
 const state ={
-    clickedProgram:null
+    clickedProgram:null,
+    openPanels: [
+        {
+            icon: 'printer.png',
+            minimize: false,
+            title: 'Printer'
+        }
+    ]
 }
 
 const getters ={
-    getClickedProgram: state => state.clickedProgram
+    getClickedProgram: state => state.clickedProgram,
+    getOpenPanels: state => state.openPanels,
 }
 
 const actions ={
-
+    addingPanel({commit},panel){
+        const openPanels = state.openPanels.concat(panel)
+        commit('setOpenPanels', openPanels)
+    }
 }
 
 const mutations = {
-    setClickedProgram: (state, el) => (state.clickedProgram = el)
+    setClickedProgram: (state, el) => (state.clickedProgram = el),
+    setOpenPanels: (state, panels) => (state.openPanels = panels)
 }
 
 export default{

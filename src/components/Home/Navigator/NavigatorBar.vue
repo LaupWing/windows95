@@ -6,17 +6,22 @@
                 Start
             </div>
         </Button>
+        <Panels/>
     </div>
 </template>
 
 <script>
 import Button from '../../UI/Buttons/Button'
 import WindowsLogo from '../../Logos/Windows'
+import {mapGetters} from 'vuex'
+import Panels from './Panels/Panels'
+
 export default {
     name: 'Navigator-Bar',
     components:{
         Button,
-        WindowsLogo
+        WindowsLogo,
+        Panels
     },
     data(){
         return{

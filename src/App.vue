@@ -32,6 +32,7 @@ export default {
     --lightGrey: #C3C6CB;
     --mediumGrey:#ced1d6;
     --darkGrey: #86898E;
+    --almostWhite:#E0E0E0;
     --justWhite: white;
     --justBlack: rgba(0,0,0,.5);
     --fontFam: PixelFJVerdana12pt;
