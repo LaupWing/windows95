@@ -5,8 +5,8 @@
         @click="setActive"
         @mousedown="mouseDownEvent"
         @mousemove="mouseMoveEvent"
-        @mouseup="mouseUpEvent"
-        @mouseout="reset"
+        @mouseup="mouseUpOutEvent"
+        @mouseout="mouseUpOutEvent"
     >
         <h2>{{panel.title}}</h2>
     </header>
@@ -49,10 +49,9 @@ export default {
             e.stopPropagation()
             this.setActiveProgram(this.panel)
         },
-        mouseUpEvent(e){
+        mouseUpOutEvent(e){
             this.reset()
             this.diffSnapshot = {...this.diff}
-            console.log(this.diffSnapshot)
         },
         mouseDownEvent(e){
             this.setActiveProgram(this.panel)
@@ -63,7 +62,6 @@ export default {
             this.move = true
         },
         reset(e){
-            // Resetting
             this.move = false
             this.beginPos = null
         },
