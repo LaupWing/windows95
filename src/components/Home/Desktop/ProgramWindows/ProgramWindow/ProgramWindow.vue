@@ -24,34 +24,27 @@ export default {
         return{
             posObj: null,
             transform:{
-                style: null,
-                values: null
-            }
+                style: `transform(0,0)`,
+                values: {
+                    top:0,
+                    left: 0
+                }
+            },
+            transformSnapshot: null
         }
     },
     methods:{
         movingWindow(topDiff, leftDiff){
-            if(this.transform.style!==null){
-                const newTop = this.transform.values.top + topDiff
-                const newLeft = this.transform.values.left + leftDiff
-                this.transform = {
-                    style: {
-                        transform:`translate(${newLeft}px,${newTop}px)`
-                    },
-                    values:{
-                        top: newTop,
-                        left: newLeft
-                    }
-                }
-            }else{
-                this.transform = {
-                    style: {
-                        transform:`translate(${leftDiff}px,${topDiff}px)`
-                    },
-                    values:{
-                        top: topDiff,
-                        left: leftDiff
-                    }
+            const newTop = this.transform.values.top + topDiff
+            const newLeft = this.transform.values.left + leftDiff
+            console.log(topDiff,leftDiff)
+            this.transform = {
+                style: {
+                    transform:`translate(${topDiff}px,${leftDiff}px)`
+                },
+                values:{
+                    top: newTop,
+                    left: newLeft
                 }
             }
         },
@@ -71,6 +64,7 @@ export default {
     },
     mounted(){
         window.addEventListener('load', this.setCenterPos)
+        console.log(this.panel)
     }
 }
 </script>

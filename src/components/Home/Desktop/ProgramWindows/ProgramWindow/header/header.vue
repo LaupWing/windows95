@@ -5,7 +5,7 @@
         @click="setActive"
         @mousedown="mouseDownEvent"
         @mousemove="mouseMoveEvent"
-        @mouseup="reset"
+        @mouseup="mouseUpEvent"
         @mouseout="reset"
     >
         <h2>{{panel.title}}</h2>
@@ -26,7 +26,15 @@ export default {
     data(){
         return{
             move: false,
-            beginPos: null
+            beginPos: null,
+            diff: {
+                diffLeft: 0,
+                diffTop: 0
+            },
+            diffSnapshot:{
+                diffLeft: 0,
+                diffTop:0
+            }
         }
     },
     computed:{
@@ -41,10 +49,13 @@ export default {
             e.stopPropagation()
             this.setActiveProgram(this.panel)
         },
+        mouseUpEvent(e){
+            this.reset()
+            this.diffSnapshot = {...this.diff}
+            console.log(this.diffSnapshot)
+        },
         mouseDownEvent(e){
             this.setActiveProgram(this.panel)
-            console.log('starting move')
-            console.log(this.beginPos)
             this.beginPos = {
                 top: e.clientY,
                 left: e.clientX
@@ -58,12 +69,15 @@ export default {
         },
         mouseMoveEvent(e){
             if(this.move){
-                const container = this.$el.closest('.program-window')
                 const newTop = e.clientY
                 const newLeft = e.clientX
-                const diffLeft = newLeft -this.beginPos.left
-                const diffTop = newTop -this.beginPos.top
-                this.$emit('movingWindow', diffTop, diffLeft)
+                const diffLeft = newLeft -(this.beginPos.left - this.diffSnapshot.diffLeft)
+                const diffTop = newTop - (this.beginPos.top - this.diffSnapshot.diffTop)
+                this.diff = {
+                    diffLeft,
+                    diffTop
+                }
+                this.$emit('movingWindow',diffLeft, diffTop)
             }
         }
     },
