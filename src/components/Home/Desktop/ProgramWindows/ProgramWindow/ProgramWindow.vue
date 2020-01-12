@@ -1,5 +1,9 @@
 <template>
-    <div class="program-window" :style="[posObj, transform.style]">
+    <div 
+        class="program-window" 
+        :style="[posObj, transform.style]"
+        @resize="resizeEvent"
+    >
         <Header
             :panel="panel"
             v-on:movingWindow="movingWindow"
@@ -9,6 +13,8 @@
 
 <script>
 import Header from './header/header'
+import onResize from 'resize-event'
+import {debounce} from 'debounce'
 export default {
     name: 'ProgramWindow',
     props:{
@@ -34,10 +40,13 @@ export default {
         }
     },
     methods:{
+        resizeEvent(){
+            const containerSizes = this.$el.getBoundingClientRect()
+            console.log(containerSizes)
+        },
         movingWindow(topDiff, leftDiff){
             const newTop = this.transform.values.top + topDiff
             const newLeft = this.transform.values.left + leftDiff
-            console.log(topDiff,leftDiff)
             this.transform = {
                 style: {
                     transform:`translate(${topDiff}px,${leftDiff}px)`
@@ -64,7 +73,7 @@ export default {
     },
     mounted(){
         window.addEventListener('load', this.setCenterPos)
-        console.log(this.panel)
+        onResize(this.$el, debounce(this.resizeEvent,200))
     }
 }
 </script>
