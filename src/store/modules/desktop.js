@@ -6,7 +6,11 @@ const state ={
             icon: 'printer.png',
             minimize: false,
             title: 'Printer',
-            adjustable:true
+            adjustable:true,
+            defaultSize:{
+                width: 300,
+                height: 300
+            }
         }
     ]
 }

@@ -10,7 +10,7 @@
         <h2>{{panel.title}}</h2>
         <div class="buttons">
             <MinimizeBtn/>
-            <MaximizeBtn/>
+            <MaximizeBtn @click.native="maximize"/>
             <CloseBtn/>
         </div>    
     </header>
@@ -55,11 +55,13 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['setActiveProgram']),
         mouseUpOutEvent(e){
             this.reset()
             this.diffSnapshot = {...this.diff}
         },
         mouseDownEvent(e){
+            this.setActiveProgram(this.panel)
             this.beginPos = {
                 top: e.clientY,
                 left: e.clientX
@@ -82,6 +84,9 @@ export default {
                 }
                 this.$emit('movingWindow',diffLeft, diffTop)
             }
+        },
+        maximize(e){
+            this.$emit('maximize')
         }
     },
     created(){
