@@ -5,7 +5,8 @@ const state ={
         {
             icon: 'printer.png',
             minimize: false,
-            title: 'Printer'
+            title: 'Printer',
+            adjustable:true
         }
     ]
 }

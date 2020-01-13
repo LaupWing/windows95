@@ -1,8 +1,7 @@
 <template>
     <div 
         class="program-window" 
-        :style="[posObj, transform.style]"
-        @resize="resizeEvent"
+        :style="[posObj, transform.style, adjustable()]"
     >
         <Header
             :panel="panel"
@@ -40,9 +39,11 @@ export default {
         }
     },
     methods:{
+        adjustable(){
+            return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
+        },
         resizeEvent(){
             const containerSizes = this.$el.getBoundingClientRect()
-            console.log(containerSizes)
         },
         movingWindow(topDiff, leftDiff){
             const newTop = this.transform.values.top + topDiff
@@ -73,19 +74,19 @@ export default {
     },
     mounted(){
         window.addEventListener('load', this.setCenterPos)
-        onResize(this.$el, debounce(this.resizeEvent,200))
+        if(this.panel.adjustable){
+            onResize(this.$el, debounce(this.resizeEvent,200))
+        }
     }
 }
 </script>
 
 <style scoped>
 .program-window{
-    width: 300px;
-    height: 500px;
+    min-width: 300px;
+    min-height: 300px;
     background: var(--lightGrey);
     position: fixed;
-    resize: both;
-    overflow: auto;
     border-top: var(--lighterGrey) solid 2px;
     border-left: var(--lighterGrey) solid 2px;
     border-right: var(--justBlack) solid 2px;
