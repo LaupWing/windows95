@@ -9,14 +9,23 @@
         @mouseout="mouseUpOutEvent"
     >
         <h2>{{panel.title}}</h2>
+        <div class="buttons">
+            <CloseBtn/>
+            <MinimizeBtn/>
+        </div>    
     </header>
 </template>
 
 <script>
 import {mapMutations, mapGetters} from 'vuex'
-    
+import CloseBtn from '../../../../../Logos/PanelButtons/Close' 
+import MinimizeBtn from '../../../../../Logos/PanelButtons/Minimize' 
 export default {
     name: 'ProgramHeader',
+    components:{
+        CloseBtn,
+        MinimizeBtn
+    },
     props:{
         panel:{
             required: true,
@@ -91,6 +100,8 @@ header{
     background: var(--darkGrey);
     width: 100%;
     padding: 3px;
+    display: flex;
+    justify-content: space-between;
 }
 header.active{
     background: var(--blue);
@@ -98,5 +109,16 @@ header.active{
 header h2{
     user-select: none;
     font-size: 1.2rem;
+}
+header .buttons{
+    display: flex;
+    align-items: center;
+}
+header button{
+    margin: 0 2px;
+}
+header button:first-of-type,
+header button:last-of-type{
+    margin: 0;
 }
 </style>
