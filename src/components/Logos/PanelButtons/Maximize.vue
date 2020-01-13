@@ -1,7 +1,7 @@
 <template>
     <Button :className="'panel-btn'">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 370">
-            <rect class="cls-1" x="47.13" y="321.57" width="275.74" height="48.43"/>
+            <path class="cls-1" d="M0,0V370H370V0ZM20,350V59.36H350V350Z"/>
         </svg>
     </Button>
 </template>

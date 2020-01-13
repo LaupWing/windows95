@@ -37,7 +37,7 @@ export default {
     --justWhite: white;
     --justBlack: rgba(0,0,0,.5);
     --fontFam: PixelFJVerdana12pt;
-    --panelBtn-width: 15px;
+    --panelBtn-width: 13px;
     font-family: var(--fontFam);
 }
 #app{

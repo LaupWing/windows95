@@ -2,6 +2,7 @@
     <div 
         class="program-window" 
         :style="[posObj, transform.style, adjustable()]"
+        @click="onClickEvent"
     >
         <Header
             :panel="panel"

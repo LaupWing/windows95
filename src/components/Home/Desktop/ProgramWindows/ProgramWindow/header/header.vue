@@ -10,8 +10,9 @@
     >
         <h2>{{panel.title}}</h2>
         <div class="buttons">
-            <CloseBtn/>
             <MinimizeBtn/>
+            <MaximizeBtn/>
+            <CloseBtn/>
         </div>    
     </header>
 </template>
@@ -19,11 +20,13 @@
 <script>
 import {mapMutations, mapGetters} from 'vuex'
 import CloseBtn from '../../../../../Logos/PanelButtons/Close' 
+import MaximizeBtn from '../../../../../Logos/PanelButtons/Maximize' 
 import MinimizeBtn from '../../../../../Logos/PanelButtons/Minimize' 
 export default {
     name: 'ProgramHeader',
     components:{
         CloseBtn,
+        MaximizeBtn,
         MinimizeBtn
     },
     props:{
@@ -115,7 +118,7 @@ header .buttons{
     align-items: center;
 }
 header button{
-    margin: 0 2px;
+    margin: 0 3px;
 }
 header button:first-of-type,
 header button:last-of-type{
