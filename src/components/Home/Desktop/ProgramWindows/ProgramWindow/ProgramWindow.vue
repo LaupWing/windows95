@@ -47,10 +47,9 @@ export default {
             },
             defaultMinSizes:{
                 minWidth: 0,
-                minHeight:0 
+                minHeight:0,
             },
             maximized: null, // this needs to be intial null to say know if the user clicked or not
-            transformSnapshot: null
         }
     },
     methods:{
@@ -86,9 +85,8 @@ export default {
         },
         setCenterPos(){
             const containerSizes = document.querySelector('.desktop-container').getBoundingClientRect()
-            const thisElSizes = this.$el.getBoundingClientRect()
-            const top = (containerSizes.height /2) - (thisElSizes.height/2) 
-            const left = (containerSizes.width /2) - (thisElSizes.width/2)
+            const top = (containerSizes.height /2) - (this.panel.defaultSize.height/2) 
+            const left = (containerSizes.width /2) - (this.panel.defaultSize.width/2)
             this.setPosObj(top,left)
         },
         maximize(){
@@ -99,6 +97,13 @@ export default {
                     width: desktopSizes.width +'px',
                     height: desktopSizes.height +'px'
                 }     
+                this. transform={
+                    style: `transform(0,0)`,
+                    values: {
+                        top:0,
+                        left: 0
+                    }
+                }
             }else{
                 this.maximized = null
                 this.initial()
@@ -112,9 +117,7 @@ export default {
         },
         initial(){
             this.setMinDefaultSize()
-            setTimeout(()=>{
-                this.setCenterPos()
-            },250)
+            this.setCenterPos()
         }
     },
     mounted(){
@@ -134,6 +137,6 @@ export default {
     border-left: var(--lighterGrey) solid 2px;
     border-right: var(--justBlack) solid 2px;
     border-bottom: var(--justBlack) solid 2px;
-    transition: height width .25s;
+    /* transition: height 1s, width 1s; */
 }
 </style>

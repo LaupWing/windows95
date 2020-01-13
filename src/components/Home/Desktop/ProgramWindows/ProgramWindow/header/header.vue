@@ -86,6 +86,14 @@ export default {
             }
         },
         maximize(e){
+            this.diffSnapshot={
+                diffLeft: 0,
+                diffTop:0
+            }
+            this.diff = {
+                diffLeft: 0,
+                diffTop: 0
+            },
             this.$emit('maximize')
         }
     },
