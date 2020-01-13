@@ -15,6 +15,8 @@
 import Header from './header/header'
 import onResize from 'resize-event'
 import {debounce} from 'debounce'
+import {mapMutations} from 'vuex'
+
 export default {
     name: 'ProgramWindow',
     props:{
@@ -40,6 +42,11 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['setActiveProgram']),
+        onClickEvent(e){
+            e.stopPropagation()
+            this.setActiveProgram(this.panel)
+        },
         adjustable(){
             return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
         },

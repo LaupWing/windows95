@@ -2,7 +2,6 @@
     <header 
         class="program-header"
         :class="{'active': active}"
-        @click="setActive"
         @mousedown="mouseDownEvent"
         @mousemove="mouseMoveEvent"
         @mouseup="mouseUpOutEvent"
@@ -56,17 +55,11 @@ export default {
         }
     },
     methods:{
-        ...mapMutations(['setActiveProgram']),
-        setActive(e){
-            e.stopPropagation()
-            this.setActiveProgram(this.panel)
-        },
         mouseUpOutEvent(e){
             this.reset()
             this.diffSnapshot = {...this.diff}
         },
         mouseDownEvent(e){
-            this.setActiveProgram(this.panel)
             this.beginPos = {
                 top: e.clientY,
                 left: e.clientX
