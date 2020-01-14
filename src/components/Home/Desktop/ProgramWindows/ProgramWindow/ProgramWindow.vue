@@ -39,7 +39,42 @@ export default {
     computed:{
         adjustable(){
             return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
-        },
+        }
+    },
+    watch:{
+        'panel.minimize': function(newVal){
+            if(newVal){
+                const panelSizes = document.querySelector(`#panel-${this.panel.title}`).getBoundingClientRect()
+
+                const newPos ={
+                    top: panelSizes.top + (panelSizes.height/2),
+                    left:panelSizes.left + (panelSizes.width/2)
+                }
+                this.transitionClass = 'minimize'
+                this.updatingPanel({updatePanel:this.panel, prop: 'stylesnapshot', val: {...this.styleObj}})
+                this.setActiveProgram(null)
+
+                this.settingStyleObj([
+                        {
+                            prop:'top', 
+                            value:`${newPos.top}px`
+                        },
+                        {
+                            prop:'left', 
+                            value:`${newPos.left}px`
+                        },
+                        {
+                            prop: 'transform',
+                            value: `translate(-50%,-50%) scale(0)`
+                        }
+                ])
+            }
+            else if(!newVal){
+                this.styleObj = {...this.panel.stylesnapshot}
+                this.transitionClass = 'minimize'
+                this.updatingPanel({updatePanel:this.panel, prop: 'stylesnapshot', val:null})
+            }
+        }
     },
     data(){
         return{
@@ -91,28 +126,7 @@ export default {
             ])
         },
         minimize(){
-            const panelSizes = document.querySelector(`#panel-${this.panel.title}`).getBoundingClientRect()
-
-            const newPos ={
-                top: panelSizes.top + (panelSizes.height/2),
-                left:panelSizes.left + (panelSizes.width/2)
-            }
-            this.transitionClass = 'minimize'
             this.updatingPanel({updatePanel:this.panel, prop: 'minimize', val: true})
-            this.settingStyleObj([
-                    {
-                        prop:'top', 
-                        value:`${newPos.top}px`
-                    },
-                    {
-                        prop:'left', 
-                        value:`${newPos.left}px`
-                    },
-                    {
-                        prop: 'transform',
-                        value: `translate(-50%,-50%) scale(0)`
-                    }
-                ])
         },
         maximize(){
             if(!this.maximized){

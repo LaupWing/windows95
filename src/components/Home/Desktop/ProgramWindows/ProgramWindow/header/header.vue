@@ -9,7 +9,7 @@
     >
         <h2>{{panel.title}}</h2>
         <div class="buttons">
-            <MinimizeBtn @click.native="$emit('minimize')"/>
+            <MinimizeBtn @click.native="minimize"/>
             <MaximizeBtn @click.native="maximize"/>
             <CloseBtn/>
         </div>    
@@ -84,6 +84,10 @@ export default {
                 }
                 this.$emit('movingWindow',diffLeft, diffTop)
             }
+        },
+        minimize(e){
+            e.stopPropagation()
+            this.$emit('minimize')
         },
         maximize(e){
             this.diffSnapshot={

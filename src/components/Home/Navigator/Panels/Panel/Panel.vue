@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {mapMutations, mapGetters} from 'vuex'
+import {mapMutations, mapGetters, mapActions} from 'vuex'
 
 export default {
     name: 'Panel',
@@ -22,7 +22,7 @@ export default {
         }
     },
     computed:{
-        ...mapGetters(['getActiveProgram']),
+        ...mapGetters(['getActiveProgram', 'getOpenPanels']),
         active(){
             return this.panel === this.getActiveProgram
         }
@@ -34,12 +34,18 @@ export default {
     },
     methods:{
         ...mapMutations(['setActiveProgram']),
+        ...mapActions(['updatingPanel']),
         setActive(e){
             e.stopPropagation()
-            if(this.getActiveProgram === this.panel){
-                return this.setActiveProgram(null)
+            const thisPanel = this.getOpenPanels.find(panel=>panel===this.panel)
+            if(thisPanel.minimize){
+                this.updatingPanel({updatePanel:this.panel, prop: 'minimize', val: false})
             }
-            this.setActiveProgram(this.panel)
+            if(this.getActiveProgram === this.panel){
+                this.setActiveProgram(null)
+            }else{
+                this.setActiveProgram(this.panel)
+            }
         }
     },
     created(){
