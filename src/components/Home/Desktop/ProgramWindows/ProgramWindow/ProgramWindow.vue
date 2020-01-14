@@ -6,7 +6,8 @@
             transform.style, 
             adjustable(), 
             defaultMinSizes,
-            maximized
+            maximized,
+            styleObj
         ]"
         @click="onClickEvent"
     >
@@ -71,9 +72,8 @@ export default {
         resizeEvent(){
             const containerSizes = this.$el.getBoundingClientRect()
         },
-        settingStyleObj(prop, value){
-            const newStyleObj = {...this.styleObj}
-            newStyleObj[key] = value
+        settingStyleObj(stylesArray){
+            stylesArray.forEach(style=>this.styleObj[style.prop] = style.value)
         },
         movingWindow(topDiff, leftDiff){
             const newTop = this.transform.values.top + topDiff
@@ -98,7 +98,17 @@ export default {
             const containerSizes = document.querySelector('.desktop-container').getBoundingClientRect()
             const top = (containerSizes.height /2) - (this.panel.defaultSize.height/2) 
             const left = (containerSizes.width /2) - (this.panel.defaultSize.width/2)
-            this.setPosObj(top,left)
+            // this.setPosObj(top,left)
+            this.settingStyleObj([
+                {
+                    prop:'top', 
+                    value:`${top}px`
+                },
+                {
+                    prop:'left', 
+                    value:`${left}px`
+                }
+            ])
         },
         maximize(){
             if(!this.maximized){
@@ -121,10 +131,20 @@ export default {
             }
         },
         setMinDefaultSize(){
-            this.defaultMinSizes ={
-                minWidth: this.panel.defaultSize.width + 'px',
-                minHeight: this.panel.defaultSize.height + 'px',
-            }
+            this.settingStyleObj([
+                {
+                    prop:'minWidth', 
+                    value:`${this.panel.defaultSize.width}px`
+                },
+                {
+                    prop:'minHeight', 
+                    value:`${this.panel.defaultSize.height}px`
+                }
+            ])
+            // this.defaultMinSizes ={
+            //     minWidth: this.panel.defaultSize.width + 'px',
+            //     minHeight: this.panel.defaultSize.height + 'px',
+            // }
         },
         initial(){
             this.setMinDefaultSize()
