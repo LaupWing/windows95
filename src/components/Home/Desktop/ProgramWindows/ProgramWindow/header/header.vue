@@ -9,7 +9,7 @@
     >
         <h2>{{panel.title}}</h2>
         <div class="buttons">
-            <MinimizeBtn/>
+            <MinimizeBtn @click.native="$emit('minimize')"/>
             <MaximizeBtn @click.native="maximize"/>
             <CloseBtn/>
         </div>    

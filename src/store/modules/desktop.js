@@ -27,7 +27,6 @@ const actions ={
         commit('setOpenPanels', openPanels)
     },
     updatingPanel({commit}, {updatePanel, prop, val}){
-        console.log(updatePanel, prop, val)
         const updatedPanels = state.openPanels.map(panel=>{
             if(panel === updatePanel){
                 panel[prop] = val
@@ -35,7 +34,6 @@ const actions ={
             return panel
         })
         commit('setOpenPanels', updatedPanels)
-        console.log(state.openPanels)
     }
 }
 

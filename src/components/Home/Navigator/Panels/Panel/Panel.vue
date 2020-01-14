@@ -2,6 +2,7 @@
     <div 
         class="panel"
         :class="{'active': active}"
+        :id="'panel-'+panel.title"
         @click="setActive"
     >
         <img :src="require(`../../../../../assets/programs/${panel.icon}`)" alt="">

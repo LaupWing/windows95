@@ -1,17 +1,20 @@
 <template>
     <div 
         class="program-window" 
+        :class="transitionClass"
         :style="[
             adjustable, 
             maximized,
             styleObj
         ]"
         @click="onClickEvent"
+        @transitionend="onTransitionEnd"
     >
         <Header
             :panel="panel"
             v-on:movingWindow="movingWindow"
             v-on:maximize="maximize"
+            v-on:minimize="minimize"
         />
     </div>
 </template>
@@ -47,6 +50,7 @@ export default {
                 top: 0,
                 left: 0,
             },
+            transitionClass: null,
             maximized: null, // this needs to be intial null to say know if the user clicked or not
         }
     },
@@ -85,6 +89,30 @@ export default {
                     value:`${left}px`
                 }
             ])
+        },
+        minimize(){
+            const panelSizes = document.querySelector(`#panel-${this.panel.title}`).getBoundingClientRect()
+
+            const newPos ={
+                top: panelSizes.top + (panelSizes.height/2),
+                left:panelSizes.left + (panelSizes.width/2)
+            }
+            this.transitionClass = 'minimize'
+            this.updatingPanel({updatePanel:this.panel, prop: 'minimize', val: true})
+            this.settingStyleObj([
+                    {
+                        prop:'top', 
+                        value:`${newPos.top}px`
+                    },
+                    {
+                        prop:'left', 
+                        value:`${newPos.left}px`
+                    },
+                    {
+                        prop: 'transform',
+                        value: `translate(-50%,-50%) scale(0)`
+                    }
+                ])
         },
         maximize(){
             if(!this.maximized){
@@ -126,6 +154,11 @@ export default {
                 }
             ])
         },
+        onTransitionEnd(e){
+            if(this.transitionClass){
+                this.transitionClass = null
+            }
+        },
         initial(){
             this.setMinDefaultSize()
             this.setCenterPos()
@@ -148,6 +181,8 @@ export default {
     border-left: var(--lighterGrey) solid 2px;
     border-right: var(--justBlack) solid 2px;
     border-bottom: var(--justBlack) solid 2px;
-    /* transition: height 1s, width 1s; */
+}
+.program-window.minimize{
+    transition: transform .5s, width 1s, top .5s, left .5s;
 }
 </style>
