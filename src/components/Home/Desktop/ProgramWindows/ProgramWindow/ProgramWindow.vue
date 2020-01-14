@@ -49,6 +49,13 @@ export default {
                 minWidth: 0,
                 minHeight:0,
             },
+            styleObj:{
+                minWidth: 0,
+                minHeight:0,
+                transform:`translate(0,0)`,
+                top: 0,
+                left: 0,
+            },
             maximized: null, // this needs to be intial null to say know if the user clicked or not
         }
     },
@@ -63,6 +70,10 @@ export default {
         },
         resizeEvent(){
             const containerSizes = this.$el.getBoundingClientRect()
+        },
+        settingStyleObj(prop, value){
+            const newStyleObj = {...this.styleObj}
+            newStyleObj[key] = value
         },
         movingWindow(topDiff, leftDiff){
             const newTop = this.transform.values.top + topDiff
