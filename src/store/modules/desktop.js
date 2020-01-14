@@ -25,6 +25,17 @@ const actions ={
     addingPanel({commit},panel){
         const openPanels = state.openPanels.concat(panel)
         commit('setOpenPanels', openPanels)
+    },
+    updatingPanel({commit}, {updatePanel, prop, val}){
+        console.log(updatePanel, prop, val)
+        const updatedPanels = state.openPanels.map(panel=>{
+            if(panel === updatePanel){
+                panel[prop] = val
+            }
+            return panel
+        })
+        commit('setOpenPanels', updatedPanels)
+        console.log(state.openPanels)
     }
 }
 

@@ -2,10 +2,7 @@
     <div 
         class="program-window" 
         :style="[
-            posObj, 
-            transform.style, 
-            adjustable(), 
-            defaultMinSizes,
+            adjustable, 
             maximized,
             styleObj
         ]"
@@ -23,7 +20,7 @@
 import Header from './header/header'
 import onResize from 'resize-event'
 import {debounce} from 'debounce'
-import {mapMutations} from 'vuex'
+import {mapMutations, mapActions} from 'vuex'
 
 export default {
     name: 'ProgramWindow',
@@ -36,20 +33,13 @@ export default {
     components:{
         Header
     },
+    computed:{
+        adjustable(){
+            return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
+        },
+    },
     data(){
         return{
-            posObj: null,
-            transform:{
-                style: `transform(0,0)`,
-                values: {
-                    top:0,
-                    left: 0
-                }
-            },
-            defaultMinSizes:{
-                minWidth: 0,
-                minHeight:0,
-            },
             styleObj:{
                 minWidth: 0,
                 minHeight:0,
@@ -62,12 +52,10 @@ export default {
     },
     methods:{
         ...mapMutations(['setActiveProgram']),
+        ...mapActions(['updatingPanel']),
         onClickEvent(e){
             e.stopPropagation()
             this.setActiveProgram(this.panel)
-        },
-        adjustable(){
-            return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
         },
         resizeEvent(){
             const containerSizes = this.$el.getBoundingClientRect()
@@ -76,29 +64,17 @@ export default {
             stylesArray.forEach(style=>this.styleObj[style.prop] = style.value)
         },
         movingWindow(topDiff, leftDiff){
-            const newTop = this.transform.values.top + topDiff
-            const newLeft = this.transform.values.left + leftDiff
-            this.transform = {
-                style: {
-                    transform:`translate(${topDiff}px,${leftDiff}px)`
-                },
-                values:{
-                    top: newTop,
-                    left: newLeft
+            this.settingStyleObj([
+                {
+                    prop:'transform', 
+                    value:`translate(${topDiff}px,${leftDiff}px)`
                 }
-            }
-        },
-        setPosObj(top, left){
-            this.posObj = {
-                top: top + 'px',
-                left: left + 'px'
-            } 
+            ])
         },
         setCenterPos(){
             const containerSizes = document.querySelector('.desktop-container').getBoundingClientRect()
             const top = (containerSizes.height /2) - (this.panel.defaultSize.height/2) 
             const left = (containerSizes.width /2) - (this.panel.defaultSize.width/2)
-            // this.setPosObj(top,left)
             this.settingStyleObj([
                 {
                     prop:'top', 
@@ -112,21 +88,29 @@ export default {
         },
         maximize(){
             if(!this.maximized){
-                this.setPosObj(0,0)
                 const desktopSizes = document.querySelector('.desktop-container').getBoundingClientRect()   
                 this.maximized ={
                     width: desktopSizes.width +'px',
                     height: desktopSizes.height +'px'
                 }     
-                this. transform={
-                    style: `transform(0,0)`,
-                    values: {
-                        top:0,
-                        left: 0
+                this.updatingPanel({updatePanel:this.panel, prop: 'adjustable', val: false})
+                this.settingStyleObj([
+                    {
+                        prop:'top', 
+                        value:`0px`
+                    },
+                    {
+                        prop:'left', 
+                        value:`0px`
+                    },
+                    {
+                        prop: 'transform',
+                        value: `translate(0,0)`
                     }
-                }
+                ])
             }else{
                 this.maximized = null
+                this.updatingPanel({updatePanel:this.panel, prop: 'adjustable', val: true})
                 this.initial()
             }
         },
@@ -141,10 +125,6 @@ export default {
                     value:`${this.panel.defaultSize.height}px`
                 }
             ])
-            // this.defaultMinSizes ={
-            //     minWidth: this.panel.defaultSize.width + 'px',
-            //     minHeight: this.panel.defaultSize.height + 'px',
-            // }
         },
         initial(){
             this.setMinDefaultSize()
