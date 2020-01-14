@@ -35,6 +35,10 @@ const actions ={
             return panel
         })
         commit('setOpenPanels', updatedPanels)
+    },
+    deletingPanel({commit}, deletepanel){
+        const updatedPanels = state.openPanels.filter(panel=>panel!==deletepanel)
+        commit('setOpenPanels', updatedPanels)
     }
 }
 

@@ -11,13 +11,13 @@
         <div class="buttons">
             <MinimizeBtn @click.native="minimize"/>
             <MaximizeBtn @click.native="maximize"/>
-            <CloseBtn/>
+            <CloseBtn @click.native="close"/>
         </div>    
     </header>
 </template>
 
 <script>
-import {mapMutations, mapGetters} from 'vuex'
+import {mapMutations, mapGetters, mapActions} from 'vuex'
 import CloseBtn from '../../../../../Logos/PanelButtons/Close' 
 import MaximizeBtn from '../../../../../Logos/PanelButtons/Maximize' 
 import MinimizeBtn from '../../../../../Logos/PanelButtons/Minimize' 
@@ -56,6 +56,7 @@ export default {
     },
     methods:{
         ...mapMutations(['setActiveProgram']),
+        ...mapActions(['deletingPanel']),
         mouseUpOutEvent(e){
             this.reset()
             this.diffSnapshot = {...this.diff}
@@ -99,6 +100,9 @@ export default {
                 diffTop: 0
             },
             this.$emit('maximize')
+        },
+        close(){
+            this.deletingPanel(this.panel)
         }
     },
     created(){
