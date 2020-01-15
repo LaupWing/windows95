@@ -6,6 +6,8 @@
             :icon="item.icon"
             :title="item.title"
             :expandable="item.expandable"
+            :extraClass="item.extraClass"
+            :expansion="item.expansion"
         />
     </ul>
 </template>
@@ -22,9 +24,21 @@ export default {
             menuItems:[
                 {
                     icon: 'printer.png',
-                    title: 'Programn',
+                    title: 'Programs',
                     expandable: true
-                }
+                },
+                {
+                    icon: 'printer.png',
+                    title: 'Settings',
+                    expandable: true,
+                    expansion: Item
+                },
+                {
+                    icon: 'printer.png',
+                    title: 'Start',
+                    expandable: false,
+                    extraClass:'topDivider',
+                },
             ]
         }
     }
