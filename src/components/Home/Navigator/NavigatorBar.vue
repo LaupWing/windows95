@@ -1,5 +1,6 @@
 <template>
     <div id="Navigator-Bar">
+        <StartMenu/>
         <Button :className="'start-btn'">
             <div class="wrapper">
                 <WindowsLogo/>
@@ -15,13 +16,15 @@ import Button from '../../UI/Buttons/Button'
 import WindowsLogo from '../../Logos/Windows'
 import {mapGetters} from 'vuex'
 import Panels from './Panels/Panels'
+import StartMenu from './StartMenu/StartMenu'
 
 export default {
     name: 'Navigator-Bar',
     components:{
         Button,
         WindowsLogo,
-        Panels
+        Panels,
+        StartMenu
     },
     data(){
         return{
@@ -39,5 +42,9 @@ export default {
     border-top: var(--lighterGrey) solid 2px;
     display: flex;
     padding: 2px;
+    position: relative;
+}
+button.start-btn{
+    position: relative;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <li class="item" :style="extraStyle">
-        <img :src="require(`${icon}`)" alt="">
+        <img :src="require(`../../../assets/programs/${icon}`)" alt="">
         <h2>
             {{title}}
             <svg 
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: 'ListItem',
+    name: 'Item',
     props:{
         icon:{
             type: String,
@@ -41,5 +41,24 @@ export default {
 </script>
 
 <style>
-
+li.item{
+    background: var(--lightGrey);
+    display: flex;
+    align-items: center;
+    min-width: 250px;
+}
+li img{
+    margin: 5px;
+    width: 30px;
+}
+li h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0 10px;
+}
+li svg{
+    width: 7px;
+}
 </style>
