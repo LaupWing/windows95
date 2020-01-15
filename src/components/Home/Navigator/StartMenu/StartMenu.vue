@@ -14,10 +14,12 @@
 
 <script>
 import Item from '../../../UI/Item/Item'
+import Test from './item'
 export default {
     name: 'StartMenu',
     components:{
-        Item
+        Item,
+        Test
     },
     data(){
         return{
@@ -31,7 +33,7 @@ export default {
                     icon: 'printer.png',
                     title: 'Settings',
                     expandable: true,
-                    expansion: Item
+                    expansion: Test
                 },
                 {
                     icon: 'printer.png',

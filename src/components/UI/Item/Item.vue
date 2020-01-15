@@ -11,6 +11,10 @@
                 <polygon points="141 119.5 -0.22 0.47 -0.22 238.53 141 119.5"/>
             </svg> 
         </h2>
+
+        <div v-if="expansion">
+            <component :is="expansion"></component>
+        </div>
     </li>
 </template>
 
