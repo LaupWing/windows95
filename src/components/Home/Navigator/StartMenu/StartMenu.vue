@@ -27,7 +27,8 @@ export default {
                 {
                     icon: 'printer.png',
                     title: 'Programs',
-                    expandable: true
+                    expandable: true,
+                    expansion: ProgramList
                 },
                 {
                     icon: 'printer.png',
