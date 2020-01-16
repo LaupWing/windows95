@@ -10,6 +10,7 @@
                 :key="index"
                 :title="program.title"
                 :icon="program.icon"
+                @dblclick.native="()=>openProgram(program)"
             />
             <ProgramWindows/>
         </div>
@@ -20,7 +21,7 @@
 <script>
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
 import Program from '../components/Home/Desktop/Program/Program'
-import {mapMutations, mapGetters} from 'vuex'
+import {mapMutations, mapGetters, mapActions} from 'vuex'
 import {debounce} from 'debounce'
 import ProgramWindows from '../components/Home/Desktop/ProgramWindows/ProgramWindows'
 
@@ -41,9 +42,9 @@ export default {
     },
     methods:{
         ...mapMutations(['setCoords']),
+        ...mapActions(['addingPanel']),
         dragoverEvent(event){
             event.preventDefault()
-            
         },
         makeGrid(){
             const container = this.$el.querySelector('.desktop-container')
@@ -92,7 +93,11 @@ export default {
                 }
                 this.setCoords(coords)
             },1)
-        }
+        },
+        openProgram(program){
+            console.log(program)
+            this.addingPanel(program)
+        }   
     },
     mounted(){
         window.addEventListener('load',()=>{

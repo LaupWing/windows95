@@ -23,7 +23,7 @@
 import Header from './header/header'
 import onResize from 'resize-event'
 import {debounce} from 'debounce'
-import {mapMutations, mapActions} from 'vuex'
+import {mapMutations, mapActions, mapGetters} from 'vuex'
 
 export default {
     name: 'ProgramWindow',
@@ -37,6 +37,7 @@ export default {
         Header
     },
     computed:{
+        ...mapGetters(['getClickedProgram']),
         adjustable(){
             return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
         }
@@ -90,10 +91,14 @@ export default {
         }
     },
     methods:{
-        ...mapMutations(['setActiveProgram']),
+        ...mapMutations(['setActiveProgram','setClickedProgram']),
         ...mapActions(['updatingPanel']),
         onClickEvent(e){
             e.stopPropagation()
+            // Uncheck clicked program if user previously clicked an program
+            if(this.getClickedProgram){
+                this.setClickedProgram(null)
+            }
             this.setActiveProgram(this.panel)
         },
         resizeEvent(){
