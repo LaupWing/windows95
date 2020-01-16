@@ -24,9 +24,10 @@ const getters ={
 
 const actions ={
     addingPanel({commit},panel){
-        // if(state.openPanels.includes(panel)){
-        //     console.log(panel, 'ding ding')
-        // }
+        const checkIfPanelExists = state.openPanels.find(p=>p.title === panel.title)
+        if(checkIfPanelExists){
+            return
+        }
         const openPanels = state.openPanels.concat(panel)
         commit('setOpenPanels', openPanels)
     },

@@ -46,7 +46,6 @@ export default {
         ...mapMutations(['setActiveProgram']),
         openProgram(program){
             this.addingPanel(program)
-
             this.setActiveProgram(program)
         }
     }

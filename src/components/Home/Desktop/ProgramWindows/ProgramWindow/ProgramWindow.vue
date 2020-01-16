@@ -179,7 +179,10 @@ export default {
         }
     },
     mounted(){
-        window.addEventListener('load', this.initial)
+        this.initial()
+        setTimeout(()=>{
+            this.setActiveProgram(this.panel)
+        },1)
         if(this.panel.adjustable){
             onResize(this.$el, debounce(this.resizeEvent,200))
         }
