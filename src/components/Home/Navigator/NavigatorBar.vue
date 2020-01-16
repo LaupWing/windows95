@@ -32,6 +32,13 @@ export default {
         Panels,
         StartMenu
     },
+    watch:{
+        getActiveProgram(newVal){
+            if(newVal){
+                this.startActive = false
+            }
+        }
+    },
     computed:{
         ...mapGetters(['getActiveProgram'])
     },
@@ -44,10 +51,6 @@ export default {
         ...mapMutations(['setActiveProgram']),
         onClick(){
             this.startActive = !this.startActive
-            if(this.startActive){
-                this.setActiveProgram(null)
-            }
-            console.log(this.getActiveProgram, this.startActive)
         },
         reset(){
             if(!this.startActive){

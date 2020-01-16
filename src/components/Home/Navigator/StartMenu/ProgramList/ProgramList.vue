@@ -45,8 +45,7 @@ export default {
         ...mapActions(['addingPanel']),
         ...mapMutations(['setActiveProgram']),
         openProgram(e,program){
-            // console.log('open program')
-            // e.stopPropagation()
+            e.stopPropagation()
             this.addingPanel(program)
             this.setActiveProgram(program)
         }
