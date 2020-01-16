@@ -47,7 +47,6 @@ export default {
         openProgram(e,program){
             e.stopPropagation()
             this.addingPanel(program)
-            this.setActiveProgram(program)
         }
     }
 }

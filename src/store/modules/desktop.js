@@ -17,7 +17,6 @@ const actions ={
             if(checkIfPanelExists.minimize){
                 const undoMinimizeInOpenPanels = state.openPanels.map(panel=>{
                     if(checkIfPanelExists === panel){
-                        console.log(`this panel ${panel}`)
                         panel.minimize = false
                     }
                     return panel

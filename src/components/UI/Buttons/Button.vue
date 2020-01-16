@@ -47,7 +47,7 @@ export default {
     border-top: var(--justBlack) solid 2px;
 }
 
-.button.button.start-btn:focus .wrapper{
+.button.button.start-btn.focus .wrapper{
     border: dotted var(--justBlack) 1px;
 }
 
