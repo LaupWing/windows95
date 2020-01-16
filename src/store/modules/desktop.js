@@ -24,6 +24,9 @@ const getters ={
 
 const actions ={
     addingPanel({commit},panel){
+        // if(state.openPanels.includes(panel)){
+        //     console.log(panel, 'ding ding')
+        // }
         const openPanels = state.openPanels.concat(panel)
         commit('setOpenPanels', openPanels)
     },

@@ -46,12 +46,9 @@ export default {
         ...mapMutations(['setActiveProgram']),
         openProgram(program){
             this.addingPanel(program)
-            
+
             this.setActiveProgram(program)
         }
-    },
-    created(){
-        console.log(this.getTotalPrograms)
     }
 }
 </script>

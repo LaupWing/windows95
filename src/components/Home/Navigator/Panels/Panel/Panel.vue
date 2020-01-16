@@ -24,7 +24,7 @@ export default {
     computed:{
         ...mapGetters(['getActiveProgram', 'getOpenPanels']),
         active(){
-            return this.panel.title === this.getActiveProgram.title
+            return this.getActiveProgram ? this.panel.title === this.getActiveProgram.title : null
         }
     },
     data(){
@@ -47,9 +47,6 @@ export default {
                 this.setActiveProgram(this.panel)
             }
         }
-    },
-    created(){
-        console.log(this.panel)
     }
 }
 </script>

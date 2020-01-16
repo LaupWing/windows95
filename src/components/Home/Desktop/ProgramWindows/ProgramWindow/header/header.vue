@@ -51,7 +51,7 @@ export default {
     computed:{
         ...mapGetters(['getActiveProgram']),
         active(){
-            return this.getActiveProgram.title === this.panel.title
+            return this.getActiveProgram ? this.panel.title === this.getActiveProgram.title : null
         }
     },
     methods:{
@@ -104,9 +104,6 @@ export default {
         close(){
             this.deletingPanel(this.panel)
         }
-    },
-    created(){
-        console.log(this.panel)
     }
 }
 </script>
