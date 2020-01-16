@@ -41,11 +41,27 @@ export default {
             required: false
         }
     },
+    data(){
+        return{
+            showExpansion: false
+        }
+    },
     methods:{
+        mouseOverEvent(){
+            this.showExpansion = true
+        },
+        mouseOutEvent(){
 
+        }
     },
     created(){
         console.log(this.expansion)
+    },
+    mounted(){
+        if(this.expansion){
+            this.$el.addEventListener('mouseover', this.mouseOverEvent)
+            this.$el.addEventListener('mouseout', this.mouseOutEvent)
+        }
     }
 }
 </script>
