@@ -53,8 +53,10 @@ export default {
             this.showExpansion = true
         },
         mouseOutEvent(e){
-            if(e.toElement.closest(`#${this.expansion.name}`)){
-                return
+            if(e.toElement){
+                if(e.toElement.closest(`#${this.expansion.name}`)){
+                    return
+                }
             }
             this.showExpansion = false
         },
