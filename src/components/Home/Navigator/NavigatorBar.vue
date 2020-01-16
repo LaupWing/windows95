@@ -26,10 +26,16 @@ export default {
         Panels,
         StartMenu
     },
+    computed:{
+        ...mapGetters(['activeProgram'])
+    },
     data(){
         return{
-
+            startActive: false
         }
+    },
+    methods:{
+        
     }
 }
 </script>

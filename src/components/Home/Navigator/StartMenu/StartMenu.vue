@@ -14,6 +14,7 @@
 <script>
 import Item from '../../../UI/Item/Item'
 import ProgramList from './ProgramList/ProgramList'
+
 export default {
     name: 'StartMenu',
     components:{
