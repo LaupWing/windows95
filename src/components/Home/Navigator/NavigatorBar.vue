@@ -1,7 +1,7 @@
 <template>
     <div id="Navigator-Bar">
         <StartMenu v-if="getActiveProgram===null &&startActive"/>
-        <Button :className="'start-btn'" @click.native="startActive = !startActive">
+        <Button v-click-outside="reset" :className="'start-btn'" @click.native="onClick">
             <div class="wrapper">
                 <WindowsLogo/>
                 Start
@@ -17,6 +17,7 @@ import WindowsLogo from '../../Logos/Windows'
 import {mapGetters} from 'vuex'
 import Panels from './Panels/Panels'
 import StartMenu from './StartMenu/StartMenu'
+import ClickOutside from 'vue-click-outside'
 
 export default {
     name: 'Navigator-Bar',
@@ -35,7 +36,19 @@ export default {
         }
     },
     methods:{
-        
+        onClick(){
+            this.startActive = !this.startActive
+        },
+        reset(){
+            if(!this.startActive){
+                return
+            }
+            this.startActive = false
+            console.log('reset')
+        }
+    },
+    directives: {
+        ClickOutside
     }
 }
 </script>

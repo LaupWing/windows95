@@ -14,7 +14,17 @@ const actions ={
     addingPanel({commit},panel){
         const checkIfPanelExists = state.openPanels.find(p=>p.title === panel.title)
         if(checkIfPanelExists){
-            return
+            if(checkIfPanelExists.minimize){
+                const undoMinimizeInOpenPanels = state.openPanels.map(panel=>{
+                    if(checkIfPanelExists === panel){
+                        console.log(`this panel ${panel}`)
+                        panel.minimize = false
+                    }
+                    return panel
+                })
+                commit('setOpenPanels', undoMinimizeInOpenPanels)
+            }
+            return commit('setActiveProgram', panel)
         }
         const openPanels = state.openPanels.concat(panel)
         commit('setOpenPanels', openPanels)
