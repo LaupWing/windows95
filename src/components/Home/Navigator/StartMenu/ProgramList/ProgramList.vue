@@ -11,6 +11,7 @@
             :expandable="item.expandable"
             :extraClass="item.extraClass"
             :expansion="item.expansion"
+            :onClick="()=>openProgram(item)"
         />
     </ul>
 </template>
@@ -38,6 +39,11 @@ export default {
     },
     data(){
         return{
+        }
+    },
+    methods:{
+        openProgram(item){
+            console.log(item)
         }
     },
     created(){

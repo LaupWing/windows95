@@ -33,10 +33,16 @@ export default {
             required: true
         },
         extraClass:{
+            required: false,
             type: String
         },
         expansion:{
-            required: false
+            required: false,
+            type: Object
+        },
+        onClick:{
+            required: false,
+            type: Function
         }
     },
     data(){
@@ -64,6 +70,9 @@ export default {
         if(this.expansion){
             this.$el.addEventListener('mouseover', this.mouseOverEvent)
             this.$el.addEventListener('mouseout', this.mouseOutEvent)
+        }
+        if(this.onClick){
+            this.$el.addEventListener('click', this.onClick)
         }
     }
 }
