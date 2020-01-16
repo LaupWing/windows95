@@ -39,7 +39,7 @@ export default {
     padding: 2px;
 }
 
-.button.button.start-btn:focus{
+.button.button.start-btn.focus{
     padding: 1px;
     border-bottom: var(--lighterGrey) solid 2px;
     border-right: var(--lighterGrey) solid 2px;

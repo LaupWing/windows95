@@ -11,7 +11,7 @@
             :expandable="item.expandable"
             :extraClass="item.extraClass"
             :expansion="item.expansion"
-            :onClick="()=>openProgram(item)"
+            :onClick="(e)=>openProgram(e, item)"
         />
     </ul>
 </template>
@@ -44,7 +44,9 @@ export default {
     methods:{
         ...mapActions(['addingPanel']),
         ...mapMutations(['setActiveProgram']),
-        openProgram(program){
+        openProgram(e,program){
+            // console.log('open program')
+            // e.stopPropagation()
             this.addingPanel(program)
             this.setActiveProgram(program)
         }
