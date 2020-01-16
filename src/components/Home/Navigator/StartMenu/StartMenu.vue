@@ -14,12 +14,12 @@
 
 <script>
 import Item from '../../../UI/Item/Item'
-import Test from './item'
+import ProgramList from './ProgramList/ProgramList'
 export default {
     name: 'StartMenu',
     components:{
         Item,
-        Test
+        ProgramList
     },
     data(){
         return{
@@ -33,7 +33,7 @@ export default {
                     icon: 'printer.png',
                     title: 'Settings',
                     expandable: true,
-                    expansion: Test
+                    expansion: ProgramList
                 },
                 {
                     icon: 'printer.png',
@@ -53,6 +53,9 @@ ul#StartMenu{
     top: 0;
     left: 0;
     transform: translate(0,-100%);
+}
+ul#StartMenu,
+ul#StartMenu ul#ProgramList{
     border-top: var(--lighterGrey) solid 2px;
     border-left: var(--lighterGrey) solid 2px;
     border-right: var(--justBlack) solid 2px;

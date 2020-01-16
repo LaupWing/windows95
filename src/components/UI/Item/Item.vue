@@ -11,10 +11,12 @@
                 <polygon points="141 119.5 -0.22 0.47 -0.22 238.53 141 119.5"/>
             </svg> 
         </h2>
-
-        <div v-if="expansion">
-            <component :is="expansion"></component>
-        </div>
+        <component 
+            class="expansion" 
+            v-if="expansion && showExpansion" 
+            :is="expansion"
+            v-on:preventClose="preventClose"
+        ></component>
     </li>
 </template>
 
@@ -50,12 +52,15 @@ export default {
         mouseOverEvent(){
             this.showExpansion = true
         },
-        mouseOutEvent(){
-
+        mouseOutEvent(e){
+            if(e.toElement.closest(`#${this.expansion.name}`)){
+                return
+            }
+            this.showExpansion = false
+        },
+        preventClose(){
+            this.showExpansion = true
         }
-    },
-    created(){
-        console.log(this.expansion)
     },
     mounted(){
         if(this.expansion){
@@ -77,6 +82,8 @@ li.item{
 }
 li.item:hover{
     background: var(--blue);
+}
+li.item:hover > h2{
     color: var(--justWhite);
 }
 li.item:hover svg >*{
@@ -108,6 +115,11 @@ li.item.topDivider::before{
     border-top: solid 1px var(--darkGrey);
     border-bottom: solid 1px var(--justWhite);
     position: absolute;
-
+}
+li.item .expansion{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(100%,0);
 }
 </style>
