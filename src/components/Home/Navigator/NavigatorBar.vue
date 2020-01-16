@@ -1,7 +1,7 @@
 <template>
     <div id="Navigator-Bar">
-        <StartMenu/>
-        <Button :className="'start-btn'">
+        <StartMenu v-if="getActiveProgram===null &&startActive"/>
+        <Button :className="'start-btn'" @click.native="startActive = !startActive">
             <div class="wrapper">
                 <WindowsLogo/>
                 Start
@@ -27,7 +27,7 @@ export default {
         StartMenu
     },
     computed:{
-        ...mapGetters(['activeProgram'])
+        ...mapGetters(['getActiveProgram'])
     },
     data(){
         return{
