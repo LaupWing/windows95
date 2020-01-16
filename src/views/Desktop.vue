@@ -18,7 +18,7 @@
 <script>
 import NavigatorBar from '../components/Home/Navigator/NavigatorBar'
 import Program from '../components/Home/Desktop/Program/Program'
-import {mapMutations} from 'vuex'
+import {mapMutations, mapGetters} from 'vuex'
 import {debounce} from 'debounce'
 import ProgramWindows from '../components/Home/Desktop/ProgramWindows/ProgramWindows'
 
@@ -28,6 +28,9 @@ export default {
         NavigatorBar,
         Program,
         ProgramWindows
+    },
+    computed:{
+        ...mapGetters(['getTotalPrograms'])
     },
     data(){
         return{
