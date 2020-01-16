@@ -2,17 +2,17 @@ const state ={
     clickedProgram:null,
     activeProgram: null,
     openPanels: [
-        {
-            icon: 'printer.png',
-            minimize: false,
-            title: 'Printer',
-            adjustable:true,
-            defaultSize:{
-                width: 300,
-                height: 300
-            },
-            stylesnapshot: null
-        }
+        // {
+        //     icon: 'printer.png',
+        //     minimize: false,
+        //     title: 'Printer',
+        //     adjustable:true,
+        //     defaultSize:{
+        //         width: 300,
+        //         height: 300
+        //     },
+        //     stylesnapshot: null
+        // }
     ]
 }
 

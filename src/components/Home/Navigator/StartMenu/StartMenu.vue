@@ -5,7 +5,6 @@
             :key="index"
             :icon="item.icon"
             :title="item.title"
-            :expandable="item.expandable"
             :extraClass="item.extraClass"
             :expansion="item.expansion"
         />
@@ -27,19 +26,16 @@ export default {
                 {
                     icon: 'printer.png',
                     title: 'Programs',
-                    expandable: true,
                     expansion: ProgramList
                 },
                 {
                     icon: 'printer.png',
                     title: 'Settings',
-                    expandable: true,
                     expansion: ProgramList
                 },
                 {
                     icon: 'printer.png',
                     title: 'Start',
-                    expandable: false,
                     extraClass:'topDivider',
                 },
             ]

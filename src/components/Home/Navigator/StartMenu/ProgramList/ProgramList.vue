@@ -38,23 +38,6 @@ export default {
     },
     data(){
         return{
-            // menuItems:[
-            //     {
-            //         icon: 'printer.png',
-            //         title: 'Program1',
-            //         expandable: false
-            //     },
-            //     {
-            //         icon: 'printer.png',
-            //         title: 'Program2',
-            //         expandable: false
-            //     },
-            //     {
-            //         icon: 'printer.png',
-            //         title: 'Program2',
-            //         expandable: false,
-            //     },
-            // ]
         }
     },
     created(){

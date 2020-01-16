@@ -6,7 +6,7 @@
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 141 239"
-                v-if="expandable"
+                v-if="expansion"
             >    
                 <polygon points="141 119.5 -0.22 0.47 -0.22 238.53 141 119.5"/>
             </svg> 
@@ -34,10 +34,6 @@ export default {
         },
         extraClass:{
             type: String
-        },
-        expandable:{
-            type: Boolean,
-            required: true
         },
         expansion:{
             required: false
