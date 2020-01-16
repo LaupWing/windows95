@@ -24,6 +24,7 @@ const getters ={
 
 const actions ={
     addingPanel({commit},panel){
+        console.log(panel)
         const openPanels = state.openPanels.concat(panel)
         commit('setOpenPanels', openPanels)
     },
