@@ -17,31 +17,48 @@
 
 <script>
 import Item from '../../../../UI/Item/Item'
+import {mapGetters} from 'vuex'
+
 export default {
     name: 'ProgramList',
     components:{
         Item
     },
+    computed:{
+        ...mapGetters(['getTotalPrograms']),
+        menuItems(){
+            const menuItems = this.getTotalPrograms.map(item=>{
+                return {
+                    ...item,
+                    expandable: false
+                }
+            })
+            return menuItems
+        }
+    },
     data(){
         return{
-            menuItems:[
-                {
-                    icon: 'printer.png',
-                    title: 'Program1',
-                    expandable: false
-                },
-                {
-                    icon: 'printer.png',
-                    title: 'Program2',
-                    expandable: false
-                },
-                {
-                    icon: 'printer.png',
-                    title: 'Program2',
-                    expandable: false,
-                },
-            ]
+            // menuItems:[
+            //     {
+            //         icon: 'printer.png',
+            //         title: 'Program1',
+            //         expandable: false
+            //     },
+            //     {
+            //         icon: 'printer.png',
+            //         title: 'Program2',
+            //         expandable: false
+            //     },
+            //     {
+            //         icon: 'printer.png',
+            //         title: 'Program2',
+            //         expandable: false,
+            //     },
+            // ]
         }
+    },
+    created(){
+        console.log(this.getTotalPrograms)
     }
 }
 </script>

@@ -9,7 +9,7 @@
         :style="styleObj"
     >
         <div class="img-container">
-            <img draggable="false" :src="require(`../../../../assets/programs/${file}`)" alt="">
+            <img draggable="false" :src="require(`../../../../assets/programs/${icon}`)" alt="">
         </div>
         <h2>{{title}}</h2>
     </div>
@@ -25,7 +25,7 @@ export default {
             type: String,
             required: true
         },
-        file:{
+        icon:{
             type: String,
             required: true
         },

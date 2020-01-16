@@ -6,8 +6,10 @@
             :style="styleObj"
         >
             <Program
-                :title="'Printer'"
-                :file="'printer.png'"
+                v-for="(program, index) in getTotalPrograms"
+                :key="index"
+                :title="program.title"
+                :icon="program.icon"
             />
             <ProgramWindows/>
         </div>
