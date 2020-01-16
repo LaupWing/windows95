@@ -24,7 +24,7 @@ export default {
     computed:{
         ...mapGetters(['getActiveProgram', 'getOpenPanels']),
         active(){
-            return this.panel === this.getActiveProgram
+            return this.panel.title === this.getActiveProgram.title
         }
     },
     data(){

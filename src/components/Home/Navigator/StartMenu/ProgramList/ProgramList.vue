@@ -18,7 +18,7 @@
 
 <script>
 import Item from '../../../../UI/Item/Item'
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
     name: 'ProgramList',
@@ -43,8 +43,11 @@ export default {
     },
     methods:{
         ...mapActions(['addingPanel']),
+        ...mapMutations(['setActiveProgram']),
         openProgram(program){
             this.addingPanel(program)
+            
+            this.setActiveProgram(program)
         }
     },
     created(){
