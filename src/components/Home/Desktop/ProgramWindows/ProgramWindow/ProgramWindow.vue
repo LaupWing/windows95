@@ -16,6 +16,11 @@
             v-on:maximize="maximize"
             v-on:minimize="minimize"
         />
+        <nav>
+            <li>File</li>
+            <li>View</li>
+            <li>Help</li>
+        </nav>
         <div class="wrapper">
             <component class="content" :is="loadingProgram"></component>
         </div>
@@ -213,17 +218,31 @@ export default {
     border-bottom: var(--justBlack) solid 2px;
     display: flex;
     flex-direction: column;
+    --paddingSize: 3px;
 }
 .program-window.minimize{
     transition: transform .5s, width 1s, top .5s, left .5s;
 }
+.program-window nav{
+    display: flex;
+    padding: var(--paddingSize);
+    padding-bottom: 0;
+}
+.program-window nav li{
+    padding: 3px 8px;
+}
+.program-window nav li:hover{
+    color: white;
+    background: var(--blue);
+}
 .program-window .wrapper{
     flex-grow: 1;
-    padding: 3px;
+    padding: var(--paddingSize);
     display: flex;
 }
 .program-window .wrapper .content{
     background: white;
     flex-grow: 1;
 }
+
 </style>

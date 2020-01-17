@@ -48,5 +48,9 @@ export default {
 button{
     outline: none;
 }
+li{
+    list-style: none;
+    user-select: none;
+}
 
 </style>
