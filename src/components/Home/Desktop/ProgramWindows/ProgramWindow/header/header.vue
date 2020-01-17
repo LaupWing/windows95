@@ -7,7 +7,10 @@
         @mouseup="mouseUpOutEvent"
         @mouseout="mouseUpOutEvent"
     >
-        <h2>{{panel.title}}</h2>
+        <h2>
+            <img :src="require(`../../../../../../assets/programs/${panel.icon}`)" alt="">
+            {{panel.title}}
+        </h2>
         <div class="buttons">
             <MinimizeBtn @click.native="minimize"/>
             <MaximizeBtn @click.native="maximize"/>
@@ -122,7 +125,13 @@ header.active{
 }
 header h2{
     user-select: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+header h2 img{
+    height: 20px;
+    margin: 0 3px;
 }
 header .buttons{
     display: flex;
