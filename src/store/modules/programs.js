@@ -10,7 +10,18 @@ const state ={
                 height: 300
             },
             stylesnapshot: null
-        }
+        },
+        {
+            icon: 'explorer.png',
+            minimize: false,
+            title: 'Explorer',
+            adjustable:true,
+            defaultSize:{
+                width: 300,
+                height: 300
+            },
+            stylesnapshot: null
+        },
     ]
 }
 

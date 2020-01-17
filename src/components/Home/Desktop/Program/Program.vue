@@ -80,6 +80,11 @@ export default {
 .program{
     width: 70px;
     /* margin: 10px; */
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     background: transparent;
 }
 .program.dragging{
@@ -89,7 +94,7 @@ export default {
     padding: 2px 10px;
 }
 .program img{
-    width: 100%;
+    height: 40px;
 }
 .program h2{
     font-weight: normal;

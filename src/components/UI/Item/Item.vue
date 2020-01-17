@@ -86,6 +86,7 @@ li.item{
     min-width: 250px;
     position: relative;
     transition: .25s;
+    padding: 3px 0;
 }
 li.item:hover{
     background: var(--blue);
@@ -98,7 +99,7 @@ li.item:hover svg >*{
 }
 li img{
     margin: 5px;
-    height: 30px;
+    height: 25px;
 }
 li h2{
     display: flex;
