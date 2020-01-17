@@ -36,7 +36,7 @@ export default {
     --almostWhite:#E0E0E0;
     --justWhite: white;
     --justBlack: rgba(0,0,0,.5);
-    --fontFam: PixelFJVerdana12pt;
+    --fontFam: 'Comfortaa', cursive;
     --panelBtn-width: 13px;
     font-family: var(--fontFam);
 }

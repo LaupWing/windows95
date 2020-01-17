@@ -93,7 +93,7 @@ export default {
 }
 .program h2{
     font-weight: normal;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     color: white;
 }

@@ -25,12 +25,12 @@ export default {
         return{
             menuItems:[
                 {
-                    icon: 'printer.png',
+                    icon: 'map.png',
                     title: 'Programs',
                     expansion: ProgramList
                 },
                 {
-                    icon: 'printer.png',
+                    icon: 'settings.png',
                     title: 'Settings',
                     expansion: ProgramList
                 },

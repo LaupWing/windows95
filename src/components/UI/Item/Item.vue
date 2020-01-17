@@ -98,7 +98,7 @@ li.item:hover svg >*{
 }
 li img{
     margin: 5px;
-    width: 30px;
+    height: 30px;
 }
 li h2{
     display: flex;
