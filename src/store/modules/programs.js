@@ -17,8 +17,8 @@ const state ={
             title: 'Explorer',
             adjustable:true,
             defaultSize:{
-                width: 300,
-                height: 300
+                width: 900,
+                height: 600
             },
             stylesnapshot: null
         },

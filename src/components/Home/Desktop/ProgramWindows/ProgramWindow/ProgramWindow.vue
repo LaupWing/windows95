@@ -16,6 +16,9 @@
             v-on:maximize="maximize"
             v-on:minimize="minimize"
         />
+        <div class="wrapper">
+            <component class="content" :is="loadingProgram"></component>
+        </div>
     </div>
 </template>
 
@@ -24,6 +27,7 @@ import Header from './header/header'
 import onResize from 'resize-event'
 import {debounce} from 'debounce'
 import {mapMutations, mapActions, mapGetters} from 'vuex'
+
 
 export default {
     name: 'ProgramWindow',
@@ -34,12 +38,16 @@ export default {
         }
     },
     components:{
-        Header
+        Header,
+        ProgramExplorer: ()=> import(/* webpackChunkName: "Explorer" */'./content/Explorer.vue')
     },
     computed:{
         ...mapGetters(['getClickedProgram']),
         adjustable(){
             return this.panel.adjustable ? {resize: 'both', overflow: 'auto'} : null
+        },
+        loadingProgram(){
+            return `Program${this.panel.title}`
         }
     },
     watch:{
@@ -203,8 +211,19 @@ export default {
     border-left: var(--lighterGrey) solid 2px;
     border-right: var(--justBlack) solid 2px;
     border-bottom: var(--justBlack) solid 2px;
+    display: flex;
+    flex-direction: column;
 }
 .program-window.minimize{
     transition: transform .5s, width 1s, top .5s, left .5s;
+}
+.program-window .wrapper{
+    flex-grow: 1;
+    padding: 3px;
+    display: flex;
+}
+.program-window .wrapper .content{
+    background: white;
+    flex-grow: 1;
 }
 </style>
